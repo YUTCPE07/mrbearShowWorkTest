@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="/image/mrBearFavicon.png"/>
+</head>
+<style type="text/css">
+    thead tr th,tbody tr td {
+        text-align: center;
+    }
+
+  /*  label{
+        font: 18px arial, sans-serif;
+    }*/
+</style>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+   <script type="text/javascript" src="/js/init.js"></script>
+
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Mr.bear</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#section1" data-toggle="collapse" data-target="#formProductAdd">
+                        Add Product</a>
+                    </li>
+                    <li>
+                        <a href="#section2">ตวจสอบการโอน</a>
+                    </li>
+                    <li>
+                        <a href="#section3">รายการเเพคของ</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p class="navbar-text"></p></li>
+                    <li class="dropdown">
+                        <a name="logout" href="#" onclick="logoutOnclick()"><b>Logout</b></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <header class="business-header" style="margin-top: 50px">
+        <div id="section1" class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <h1 class="tagline">Admin</h1> -->
+                </div>
+            </div>
+
+            <!-- form add Product -->
+            <div id="formProductAdd" class="collapse row"><br>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label for="inputAddProductName">Product Name</label>
+                    <input type="email" class="form-control input-lg" id="inputAddProductName">
+                </div>
+                <div class="form-group col-sm-2 col-md-2">
+                    <label for="inputAddProductPrice">Price</label>
+                    <input type="number" class="form-control input-lg" id="inputAddProductPrice">
+                </div>
+                <div class="form-group col-sm-2 col-md-2">
+                    <label for="inputAddProductUnit">Unit</label>
+                    <select id="inputAddProductUnit" class="form-control">
+                        <option value="pce">ชิ้น</option>
+                        <option value="set">เซท</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-4 col-md-4">
+                    <label for="inputAddProductImgUrl">Picture URL</label>
+                    <input id="inputAddProductImgUrl" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                    <label for="inputAddProductImgFocus1">img focus1</label>
+                    <input id="inputAddProductImgFocus1" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                    <label for="inputAddProductImgFocus2">img focus2</label>
+                    <input id="inputAddProductImgFocus2" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                    <label for="inputAddProductImgFocus3">img focus3</label>
+                    <input id="inputAddProductImgFocus3" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+                <div class="form-group col-sm-6 col-md-3">
+                    <label for="inputAddProductImgFocus4">img focus4</label>
+                    <input id="inputAddProductImgFocus4" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-12 col-md-12">
+                    <label for="inputAddProductDescription">รายละเอียด</label>
+                    <textarea class="form-control input-lg" id="inputAddProductDescription" rows="3"></textarea>
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>ลำดับ</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>สี</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center"><label>จำนวน</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center"><label>imgUrl</label></div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>1.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlack" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                   <!--  <input id="imgBlack" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlack" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>2.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>เเดง</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorRed" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+           <!--          <input id="imgRed" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgRed" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>3.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>น้ำเงิน</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlue" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+            <!--         <input id="imgBlue" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlue" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>4.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>เขียว</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorGreen" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+             <!--        <input id="imgGreen" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgGreen" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>5.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>เทา</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorGray" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+            <!--         <input id="imgGray" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgGray" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>6.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ชมพู</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorPink" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+            <!--         <input id="imgPink" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgPink" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>7.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ใส</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorTransparent" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                   <!--  <input id="imgTransparent" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgTransparent" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>8.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ-เเดง</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlackRed" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                <!--     <input id="imgBlackRed" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlackRed" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>9.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ-เขียว</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlackGreen" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                  <!--   <input id="imgBlackGreen" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlackGreen" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>10.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ-ม่วง</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlackPurple" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                   <!--  <input id="imgBlackPurple" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlackPurple" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>11.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ-เหลือง</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlackYellow" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                   <!--  <input id="imgBlackYellow" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlackYellow" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>12.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ-ส้ม</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlackOrenge" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                   <!--  <input id="imgBlackOrenge" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlackOrenge" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+
+                <div class="form-group col-sm-2 col-md-2 text-center"><label>13.</label></div>
+                <div class="form-group col-sm-4 col-md-4 text-center"><label>ดำ-ฟ้า</label></div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <input id="colorBlackBluesky" type="number" class="form-control input-lg" value="0">
+                </div>
+                <div class="form-group col-sm-3 col-md-3 text-center">
+                    <!-- <input id="imgBlackBluesky" type="text" class="form-control input-lg" value="/image/300x300.png"> -->
+                    <input id="imgBlackBluesky" type="file" class="filestyle" 
+                    data-buttonName="btn-primary" data-size="lg">
+                </div>
+                <div class="container form-group text-center">
+                <button onclick="addProductOnclick()" class="btn btn-success btn-lg btn-block">
+                Add silicone product</button>
+                <div class="col-sm-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </header>
+    <hr>
+        
+    <div id="section2" class="container-fluid">
+        <h3>รายการแจ้งโอนเงิน</h3>            
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row text-center">
+                            <div class="col-sm-1"><h4>ลำดับ</h4></div>
+                            <div class="col-sm-3"><h4>รายการ</h4></div>
+                            <div class="col-sm-2"><h4>วันที่</h4></div>
+                            <div class="col-sm-1"><h4>เวลา</h4></div>
+                            <div class="col-sm-2"><h4>ยอดเงิน</h4></div>
+                            <div class="col-sm-3"></div>
+                        </div>
+                    </div>
+                    <div id="showOrderInform"></div>
+                    <div id="nullInform" class="panel-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><h4>ยังไม่มีรายการเเจ้งโอน</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <div id="section3" class='container-fluid'>
+        <h3>รายการแพคของ</h3>            
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row text-center">
+                            <div class="col-sm-1"><h4>ลำดับ</h4></div>
+                            <div class="col-sm-2"><h4>วันที่โอน</h4><h4>idOrder</h4></div>
+                            <div class="col-sm-3"><h4>รายการ</h4></div>
+                            <div class="col-sm-5"><h4>ที่อยู่ผู้รับ</h4></div>
+                            <div class="col-sm-1"><h4></h4></div>
+                        </div>
+                    </div>
+                    <div id="showOrderSucess"></div>
+                    <div id="nullSuccess" class="panel-body">
+                        <div class="row text-center">
+                            <div class="col-sm-12"><h4>ไม่มีข้อมูล</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    
+    <div class="container-fluid">
+        <hr>
+        <div id="onceProductShowColor" ></div>
+        
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; ซิลิโคนบุหรี่ไฟฟ้า Mr.bear</p>
+                    <p>Tel. 093-3247856,087-9748988</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script type="text/javascript" src="/js/admin.js"></script>
+    <script type="text/javascript" src="/js/fileUpload.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/*class="col-sm-6 col-md-4"*/
+
+div.col-sm-6.col-md-4 {
+	cursor: pointer;
+}
+
+.business-header {
+	margin-top: 50px;
+}
+
+#forgetPasswordAlert{
+	display: none;
+}
+#registerAlert {
+	display: none;
+}
+
+[name=disableUnAult] {
+	display: none;
+}
+
+[name=logout] {
+	display: none;
+}

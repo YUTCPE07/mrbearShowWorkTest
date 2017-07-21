@@ -1,0 +1,43 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "*",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/product/**",
+        "destination": "/onceShowProduct.html"
+      },
+      {
+        "source": "/admin",
+        "destination": "/admin.html"
+      },
+      {
+        "source": "/order",
+        "destination": "/order.html"
+      },
+      {
+        "source": "/cart",
+        "destination": "/cart.html"
+      },
+      {
+        "source": "/pay/**",
+        "destination": "/pay.html"
+      },
+      {
+        "source": "/crMrbear",
+        "destination": "/crMrbear.html"
+      },
+      {
+        "source": "/noEms",
+        "destination": "/noEms.html"
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css"> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="image/mrBearFavicon.png"/>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Mr.bear</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav mt-lg-0">
+                    <li>
+                        <a href="/crMrbear">
+                            <span class="glyphicon glyphicon-thumbs-up"></span> เครดิต
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/noEms">
+                            <span class="glyphicon glyphicon-send"></span> เลขพัสดุ
+                        </a>
+                    </li>
+                    <li name="disableUnAult">
+                        <a href="/cart">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> ตะกร้า
+                            <span class="badge" id="badgeCart"></span>
+                        </a>
+                         
+                    </li>
+                    <li name="disableUnAult">
+                        <a href="/order">
+                            <span class="glyphicon glyphicon-list"></span> รายการสั่งซื้อ
+                            <span class="badge" id="badgeOrder"></span>
+                        </a>
+                        
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p class="navbar-text"></p></li>
+                    <li id="loginOrlogOut" class="dropdown">
+                        <a name="login" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <b>Login</b> <span class="caret"></span></a>
+                        
+                        <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Login
+                                <div class="form-group">
+                                    <button onclick="loginFacebook()" href="#" 
+                                    class="btn btn-fb btn-block">Facebook</button>
+                                </div>
+                                or
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputLoginEmail">Email address</label>
+                                    <input id="inputLoginEmail" type="email" class="form-control"  placeholder="Email address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputLoginPassword">Password</label>
+                                    <input id="inputLoginPassword" type="password" class="form-control" placeholder="Password" required>
+                                    <div class="help-block text-right">
+                                        <a data-toggle="modal" data-target="#modalforgetPassword" href="">Forget the password ?</a></div>
+                                </div>
+                                <div class="form-group">
+                                     <button onclick="loginOnclick()" 
+                                     type="button" class="btn btn-primary btn-block ">Sign in</button>
+                                </div>
+                                <div class="checkbox">
+                                     <label>
+                                     <input type="checkbox"> keep me logged-in
+                                     </label>
+                                </div>
+                                 
+                            </div>
+                            <div class="bottom text-center">
+                                <button data-toggle="modal" data-target="#modalRegister"
+                                    class="btn btn-info">
+                                    สมัครเดี่ยวนี้ </button>
+                            </div>
+                        </div>
+                        </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <header class="business-header" >
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline">
+                        <img src="/image/logoMrbear.png">
+                        ซิลิโคนบุรี่ไฟฟ้า Mr. bear
+                    </h1>
+                    <p><a href="https://www.facebook.com/ecig.mrbear/">facebook.com/ecig.mrbear</a></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+        
+        <hr>       
+        <div id="showProduct" class="row text-center"></div>
+
+        <header class="business-header" >
+            <div class="container-fluid">
+                <div id="showFocus" class="row">
+                </div>
+            </div>
+        </header>
+
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; ซิลิโคนบุหรี่ไฟฟ้า Mr.bear</p>
+                    <p>Tel. 093-3247856,087-9748988</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+
+
+    <!-- forget password -->
+    <div id="modalforgetPassword" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Forget the password</h4>
+          </div>
+          <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputEmailForgetPassword" class="cols-sm-2 control-label">
+                    Email Address</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input id="inputEmailForgetPassword" type="email" class="form-control" placeholder="Enter your Email Address"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="forgetPasswordAlert" class="alert alert-info">
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="resetPassword()">Send</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Register -->
+    <div id="modalRegister" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Register</h4>
+          </div>
+          <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputRegisterEmail" class="cols-sm-2 control-label">
+                    Email Address</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input id="inputRegisterEmail" type="email" class="form-control" placeholder="Enter your Email Address"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputRegisterPassword" class="cols-sm-2 control-label">
+                    Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input id="inputRegisterPassword" type="password" class="form-control"  placeholder="Enter your Password"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="registerAlert" class="alert alert-info" ></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="sendRegisterOnclick()">Send</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <!-- <script type="text/javascript" src="js/sweetalert2.min.js"></script> -->
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

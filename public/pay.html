@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="/image/mrBearFavicon.png"/>
+
+</head>
+<body>
+      <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Mr.bear</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/crMrbear">
+                            <span class="glyphicon glyphicon-thumbs-up"></span> เครดิต
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/noEms">
+                            <span class="glyphicon glyphicon-send"></span> เลขพัสดุ
+                        </a>
+                    </li>
+                    <li name="disableUnAult" >
+                        <a href="/cart">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> ตะกร้า
+                            <span class="badge" id="badgeCart"></span>
+                        </a>
+                         
+                    </li>
+                    <li name="disableUnAult" >
+                        <a href="/order">
+                            <span class="glyphicon glyphicon-list"></span> รายการสั่งซื้อ
+                            <span class="badge" id="badgeOrder"></span>
+                        </a>
+                        
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><p class="navbar-text"></p></li>
+                    <li class="dropdown">
+                        <a name="logout" href="#" onclick="logoutOnclick()" style="display: none;">
+                            <b>Logout</b></a>
+                        <a name="login" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <b>Login</b> <span class="caret"></span></a>
+                        <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Login
+                                <div class="form-group">
+                                    <button onclick="loginFacebook()" href="#" 
+                                    class="btn btn-fb btn-block">Facebook</button>
+                                </div>
+                                or
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputLoginEmail">Email address</label>
+                                    <input id="inputLoginEmail" type="email" class="form-control"  placeholder="Email address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="inputLoginPassword">Password</label>
+                                    <input id="inputLoginPassword" type="password" class="form-control" placeholder="Password" required>
+                                    <div class="help-block text-right">
+                                        <a data-toggle="modal" data-target="#modalforgetPassword" href="">Forget the password ?</a></div>
+                                </div>
+                                <div class="form-group">
+                                     <button onclick="loginOnclick()" 
+                                     type="button" class="btn btn-primary btn-block ">Sign in</button>
+                                </div>
+                                <div class="checkbox">
+                                     <label>
+                                     <input type="checkbox"> keep me logged-in
+                                     </label>
+                                </div>
+                                 
+                            </div>
+                            <div class="bottom text-center">
+                                <button data-toggle="modal" data-target="#modalRegister"
+                                    class="btn btn-info">
+                                    สมัครเดี่ยวนี้ </button>
+                            </div>
+                        </div>
+                        </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container-fluid">
+        <header class="business-header" style="margin-top: 50px">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="tagline">ชำระสินค้า</h1>
+                        <h3 id="idOrder">รายการ: ...</h3>
+                        <h3 id="statusOrder">สถานะ: ...</h3>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1 col-md-2"></div>
+            <div class="col-sm-10 col-md-8 text-center">
+                <div class="row">
+                    <div class="col-sm-2"><h3>ลำดับ</h3></div>
+                    <div class="col-sm-6"><h3>รายการสินค้า</h3></div>
+                    <div class="col-sm-2"><h3>จำนวน</h3></div>
+                    <div class="col-sm-2"><h3>ราคา</h3></div>
+                    <div id="listProduct">
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"><h5></h5></div>
+                    <div class="col-sm-6"><h5>ค่าส่งพัสดุ</h5></div>
+                    <div class="col-sm-2"><h5>1 รายการ</h5></div>
+                    <div class="col-sm-2"><h5>50</h5></div>
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1 col-md-3"></div>
+            <div class="col-sm-10 col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading form-group text-center">
+                    <img src="/image/KBank.png" width="300px" >
+                </div>
+                <div class="panel-body form-group text-center">
+                    <h1>779-228-88-17</h1>
+                    <h3>TEERAPAT SUKSANGHUAN</h3>
+                    <h3>ธีรภัทร สุขสงวน</h3>
+                    <h3 id="sumPrice">จากรายการสินค้าคุณต้องชำระทั้งสิ้น ... บาท</h3>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <header class="business-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="tagline">แจ้งการโอนและข้อมูลสำหรับจัดส่ง</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-sm-12 col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-body text-center">
+                    <div class="row form-group">
+                        <label class="col-sm-2 col-form-label col-form-label-lg">วันที่โอน</label>
+                        <div class="col-sm-2">
+                            <input type="email" class="form-control form-control-lg" id="dateInform" placeholder="30/06/2017" maxlength="10">
+                        </div>
+                        <label class="col-sm-2 col-form-label col-form-label-lg">เวลาที่โอน</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control form-control-lg" id="timeInform" placeholder="23.59" maxlength="5">
+                        </div>
+                        <label class="col-sm-2 col-form-label col-form-label-lg">ยอดเงิน</label>
+                        <div class="col-sm-2" >
+                            <input type="number" class="form-control form-control-lg" id="price" maxlength="5">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 col-form-label col-form-label-lg">ชื่อ-นามสกุล</label>
+                        <div class="col-sm-4" >
+                            <input type="text" class="form-control form-control-lg" id="name" placeholder="มะไฟ ไสบ่ทิ่มกัน" maxlength="20">
+                        </div>
+                        <label class="col-sm-2 col-form-label col-form-label-lg">เบอร์โทรศัพท์</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control form-control-lg" id="tel" placeholder="093-3247856" maxlength="11">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>***เบอร์โทรศัพท์สำหรับเจ้าหน้าที่ส่งพัสดุเพื่อติดต่อหากไม่พบที่อยู่ท่านป้องกันการตีของกลับ</p>
+                        </div>    
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 col-form-label col-form-label-lg">ที่อยู่</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="address" rows="3"
+                            placeholder="1/1 ม.1 ถ.ชาวดอย ต.หัวลำโพง จ.พะโยงธานี 103020" maxlength="80"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-12">
+                         <button id="sendOnclick" class="form-control btn btn-info" >ส่งข้อมูล</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid">
+        <hr>
+        <div id="onceProductShowColor" ></div>
+        
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; ซิลิโคนบุหรี่ไฟฟ้า Mr.bear</p>
+                    <p>Tel. 093-3247856,087-9748988</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script type="text/javascript" src="/js/init.js"></script>
+    <script type="text/javascript" src="/js/pay.js"></script>
+</body>
+</html>
